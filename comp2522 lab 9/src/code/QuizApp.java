@@ -12,11 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Random;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * QuizApp represents an Application Object.
@@ -26,24 +22,31 @@ import java.util.HashMap;
  */
 public class QuizApp extends Application {
 
+    private static final int QUESTION_KEYS_INDEX = 0;
+    private static final int ANSWER_VALUES_INDEX = 1;
+    private static final int ZERO_INDEX = 0;
+
     private static final int SCENE_WIDTH = 800;
     private static final int SCENE_HEIGHT = 600;
-
     private static final int ROOT_LAYOUT_SPACING = 10;
+    private static final int QUESTIONS_CONTAINER_LAYOUT_SPACING= 1;
 
-    private static final int QUESTION_KEYS = 0;
-    private static final int ANSWER_VALUES = 1;
     private static final String INPUT_PATH = "src/resources/quiz.txt";
+    private static final Path INPUT_FILE_PATH;
 
-    private static int currentQuestionNumber = 1;
-
-    private static final Path inputFilePath;
     private static final Map<String, String> quizQuestionsMap;
     private static final List<String> questionList;
 
+    private static final int NUM_RAND_QUESTIONS = 10;
+    private static final int INITIAL_NUM_CORRECT_ANSWERS = 0;
+
+    private static int currentQuestionIndexNum = ZERO_INDEX;
+
+    private static int correctAnswerCount = INITIAL_NUM_CORRECT_ANSWERS;
+
     static {
         quizQuestionsMap = new HashMap<>();
-        inputFilePath = Paths.get(INPUT_PATH);
+        INPUT_FILE_PATH = Paths.get(INPUT_PATH);
 
 //        if (!Files.exists(inputFilePath))
 //        {
@@ -52,6 +55,7 @@ public class QuizApp extends Application {
 
         // Get and store questions and answers from file
         readFile();
+
         questionList = new ArrayList<>(quizQuestionsMap.keySet());
     }
 
@@ -103,85 +107,194 @@ public class QuizApp extends Application {
      */
     private static VBox createLayout()
     {
+        // Root parent component
         final VBox rootLayout;
+
+        // Components
+        final VBox questionsContainer;
+        final Button startQuizBtn;
         final Button submitBtn;
-        final Label questionLabel;
-        final Label answerLabel;
+
+        // Questions
+        List<String> randomQuestionsList;
+
+        randomQuestionsList     = new ArrayList<>(NUM_RAND_QUESTIONS);
+
+        questionsContainer      = new VBox(QUESTIONS_CONTAINER_LAYOUT_SPACING);
+        submitBtn               = new Button("Submit");
+        startQuizBtn            = new Button("Start Quiz");
+
+        startQuizBtn.setOnAction(event ->
+                startNewGame(
+                        randomQuestionsList,
+                        questionsContainer,
+                        submitBtn
+                )
+        );
 
         rootLayout = new VBox(ROOT_LAYOUT_SPACING);
-        questionLabel = getAndDisplayRandomQuestionLabel();
-        submitBtn = new Button("Submit Question");
-
-        answerLabel = new Label("");
-//        answerLabel = displayAnswer(questionLabel.getText());
-
-        submitBtn.setOnAction(e -> answerLabel.setText(displayAnswerString(questionLabel.getText())));
-
         rootLayout
                 .getChildren()
                 .addAll(
-                        questionLabel,
-                        submitBtn,
-                        answerLabel
+                        startQuizBtn,
+                        questionsContainer
+//                        currQuestionLabel
+//                        submitBtn
+//                        answerLabel
                 );
 
         return rootLayout;
     }
 
-    //-----------------------------------
+//        Label currQuestionLabel;
+//        currQuestionLabel = getAndDisplayRandomQuestionLabel();
+//        submitBtn = new Button("Submit");
 
-    private static Label getAndDisplayRandomQuestionLabel()
+    private static void startNewGame(List<String> randomQuestionsList,
+                                     final VBox questionsContainer,
+                                     final Button submitBtn)
     {
-        final Random randIndexGen;
-        final int randInt;
+        final String firstQuestion;
+        final List<String> tempRandomQuestionsList;
 
+        randomQuestionsList = getRandomQuestions();
+
+        firstQuestion = randomQuestionsList.getFirst();
+
+        displayCurrentQnAndUpdateIndex(randomQuestionsList, questionsContainer);
+
+        tempRandomQuestionsList = randomQuestionsList;
+
+        // Add submit button event handler
+        submitBtn.setOnAction(event ->
+                handleQuestionSubmit(
+                        tempRandomQuestionsList,
+                        questionsContainer
+                )
+        );
+
+        questionsContainer
+                .getChildren()
+                .add(submitBtn);
+    }
+
+    private static void endGameAndReset(final VBox questionsContainer)
+    {
+        correctAnswerCount = INITIAL_NUM_CORRECT_ANSWERS;
+        currentQuestionIndexNum = ZERO_INDEX;
+
+        questionsContainer.getChildren().clear();
+    }
+
+    private static void handleQuestionSubmit(final List<String> randomQuestionsList,
+                                            final VBox questionsContainer)
+    {
+        if (currentQuestionIndexNum < NUM_RAND_QUESTIONS)
+        {
+            displayCurrentQnAndUpdateIndex(
+                    randomQuestionsList,
+                    questionsContainer
+            );
+        }
+        else
+        {
+            System.out.println("HAVE REACHED THE MAXIMUM NUMBER, ENDING GAME");
+            endGameAndReset(questionsContainer);
+        }
+    }
+
+    /*
+     * Get the current question from randomQuestionsList and add to Label control component to display,
+     * then increment currentQuestionIndexNum by 1.
+     */
+    private static void displayCurrentQnAndUpdateIndex(final List<String> randomQuestionsList,
+                                                    final VBox questionsContainer)
+    {
+        final String currentQuestion;
         final Label questionLabel;
-        final String randomQuestion;
 
-        randIndexGen = new Random();
-        randInt = randIndexGen.nextInt(questionList.size());
+        currentQuestion = randomQuestionsList.get(currentQuestionIndexNum);
 
-        randomQuestion = questionList.get(randInt);
 
-        System.out.println(randomQuestion);
+        questionLabel = new Label(currentQuestion);
 
-        questionLabel = new Label(randomQuestion);
+        questionsContainer
+                .getChildren()
+                .add(questionLabel);
 
-        return questionLabel;
+        currentQuestionIndexNum++;
     }
 
-    private static Label displayAnswer(final String question)
+    private static List<String> getRandomQuestions()
     {
-        final Label answerLabel;
-        final String answer;
+        final List<String> randomQuestions;
 
-        answer = quizQuestionsMap.get(question);
-        answerLabel = new Label(answer);
+        Collections.shuffle(questionList);
 
-        return answerLabel;
+        // Get the first NUM_RAND_QUESTIONS questions from the shuffled questionList
+        randomQuestions = questionList.subList(ZERO_INDEX, NUM_RAND_QUESTIONS);
+
+        return randomQuestions;
     }
 
-    private static String displayAnswerString(final String question)
-    {
-        final String answer;
+    //////////////////////////////////
 
-        answer = quizQuestionsMap.get(question);
+//    /**
+//     * Displays Ten Random Questions
+//     * @return
+//     */
+//    private static Label getAndDisplayRandomQuestions()
+//    {
+//        final Random randIndexGen;
+//        final int randInt;
+//
+//        final Label questionLabel;
+//        final String randomQuestion;
+//
+//        randIndexGen = new Random();
+//        randInt = randIndexGen.nextInt(questionList.size());
+//
+//        randomQuestion = questionList.get(randInt);
+//        questionLabel = new Label(randomQuestion);
+//
+//        return questionLabel;
+//    }
+//
+//    private static Label displayAnswer(final String question)
+//    {
+//        final Label answerLabel;
+//        final String answer;
+//
+//        answer = quizQuestionsMap.get(question);
+//        answerLabel = new Label(answer);
+//
+//        return answerLabel;
+//    }
 
-        return answer;
-    }
+//    private static String displayAnswerString(final String question)
+//    {
+//        final String answer;
+//
+//        answer = quizQuestionsMap.get(question);
+//
+//        return answer;
+//    }
 
     // ------------------------------------------
 
     //TODO: Make below method run on separate thread
     /**
      * Helper method that helps reads a file specified.
+     * <p>
+     *     Initializes quizQuestionsMap
+     * </p>
      */
     private static void readFile()
     {
-        if (Files.exists(inputFilePath)) {
+        if (Files.exists(INPUT_FILE_PATH)) {
 
             // Using try-with-resources (large file) - to be auto-closed, resource needs to be declared inside try block
-            try (final BufferedReader br = Files.newBufferedReader(inputFilePath))
+            try (final BufferedReader br = Files.newBufferedReader(INPUT_FILE_PATH))
             {
                 String currentLine;
                 String[] questionAndAnswer;
@@ -192,7 +305,7 @@ public class QuizApp extends Application {
                 while (currentLine != null)
                 {
                     questionAndAnswer = currentLine.split("\\|");
-                    quizQuestionsMap.put(questionAndAnswer[QUESTION_KEYS], questionAndAnswer[ANSWER_VALUES]);
+                    quizQuestionsMap.put(questionAndAnswer[QUESTION_KEYS_INDEX], questionAndAnswer[ANSWER_VALUES_INDEX]);
 
                     currentLine = br.readLine();
                 }
