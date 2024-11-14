@@ -8,5 +8,103 @@ Who wrote "Hamlet"?|Shakespeare
 What is 5 x 6?|30
 What is the freezing point of water in Celsius?|0
 What is the largest ocean on Earth?|Pacific
-
-100 MORE QUESTIONS HERE
+What is the capital of France?|Paris
+What planet is known as the Red Planet?|Mars
+Who painted the Mona Lisa?|Leonardo da Vinci
+What is the smallest prime number?|2
+What is the square root of 49?|7
+Who is known as the Father of Computers?|Charles Babbage
+What is the main ingredient in guacamole?|Avocado
+What is the tallest mountain in the world?|Mount Everest
+How many continents are there?|7
+What is the boiling point of water in Celsius?|100
+Who discovered gravity?|Isaac Newton
+What is the longest river in the world?|Nile
+What is the first element on the periodic table?|Hydrogen
+Who wrote "Pride and Prejudice"?|Jane Austen
+What gas do plants absorb from the atmosphere?|Carbon dioxide
+What is the largest mammal?|Blue whale
+What instrument has 88 keys?|Piano
+What is the speed of light?|299,792,458 meters per second
+What is the hardest natural substance?|Diamond
+Who invented the telephone?|Alexander Graham Bell
+In which city is the Eiffel Tower located?|Paris
+What is the capital of Italy?|Rome
+What is the process of converting water into vapor called?|Evaporation
+Who was the first president of the United States?|George Washington
+What is the chemical symbol for gold?|Au
+What animal is known as the "Ship of the Desert"?|Camel
+What is the main language spoken in Brazil?|Portuguese
+What is the largest bone in the human body?|Femur
+What is the currency of Japan?|Yen
+Who is the author of "1984"?|George Orwell
+What is the capital of Egypt?|Cairo
+What is the color of a polar bear's fur?|White
+What is the term for animals that only eat plants?|Herbivores
+What is the largest island in the world?|Greenland
+How many planets are in our solar system?|8
+Who invented the light bulb?|Thomas Edison
+What is the most common blood type?|O+
+Who discovered penicillin?|Alexander Fleming
+What is the largest organ in the human body?|Skin
+What type of animal is a dolphin?|Mammal
+What is the largest country by area?|Russia
+What is the capital of Spain?|Madrid
+Who painted the Sistine Chapel ceiling?|Michelangelo
+What is the currency of the United Kingdom?|Pound
+What is the scientific name for humans?|Homo sapiens
+What is the main ingredient in chocolate?|Cocoa
+Who was the first man on the moon?|Neil Armstrong
+What is the freezing point of water in Fahrenheit?|32
+What is the capital of Germany?|Berlin
+What does "www" stand for?|World Wide Web
+What is the primary color of an emerald?|Green
+What type of galaxy is the Milky Way?|Spiral
+What is the capital of Australia?|Canberra
+What is the smallest planet in our solar system?|Mercury
+Who was the Greek god of the sea?|Poseidon
+What is the main component of the sun?|Hydrogen
+Who is known as the Queen of Pop?|Madonna
+What is the deepest part of the ocean?|Mariana Trench
+What is the longest bone in the human body?|Femur
+How many days are in a leap year?|366
+What is the largest desert in the world?|Sahara
+What is the first book of the Bible?|Genesis
+What is the capital of Russia?|Moscow
+What is the smallest ocean in the world?|Arctic
+What is the term for a baby kangaroo?|Joey
+What gas do humans exhale?|Carbon dioxide
+Who directed "Jurassic Park"?|Steven Spielberg
+What is the symbol for potassium?|K
+Who is the current King of the United Kingdom?|King Charles III
+What is the capital of China?|Beijing
+What is the largest continent?|Asia
+What is the symbol for sodium?|Na
+What is the national flower of Japan?|Cherry Blossom
+Who wrote "The Odyssey"?|Homer
+What is the most widely spoken language in the world?|English
+What is the largest rainforest in the world?|Amazon
+What is the capital of India?|New Delhi
+Who invented the theory of relativity?|Albert Einstein
+What is the currency of Mexico?|Peso
+What is the deepest lake in the world?|Lake Baikal
+What is the smallest unit of life?|Cell
+Who painted "Starry Night"?|Vincent van Gogh
+What is the national animal of Canada?|Beaver
+Who discovered America?|Christopher Columbus
+What is the largest muscle in the human body?|Gluteus maximus
+What is the main ingredient in bread?|Flour
+What planet is known for its rings?|Saturn
+What is the tallest building in the world?|Burj Khalifa
+Who wrote "The Catcher in the Rye"?|J.D. Salinger
+What is the chemical symbol for iron?|Fe
+What is the capital of South Korea?|Seoul
+What is the largest species of shark?|Whale shark
+Who wrote "To Kill a Mockingbird"?|Harper Lee
+What is the primary gas in Earth's atmosphere?|Nitrogen
+What is the longest wall in the world?|Great Wall of China
+What is the capital of Argentina?|Buenos Aires
+What is the scientific study of weather called?|Meteorology
+What is the name of the largest volcano?|Mauna Loa
+What is the only bird that can fly backward?|Hummingbird
+What is the capital of Kenya?|Nairobi
